@@ -1,0 +1,29 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scenes/IntermediateRoom/RoomGame1.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/rooms/RoomSpawn.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/IntermediateRoom/RoomGame3.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/IntermediateRoom/RoomGame5.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/EndRoom/EndRoom.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/Mana.tscn" type="PackedScene" id=6]
+
+[node name="Dungeon1" type="Node2D"]
+position = Vector2( 0, 1440 )
+
+[node name="RoomGame1" parent="." instance=ExtResource( 1 )]
+position = Vector2( 192, -512 )
+
+[node name="SpawnRoom2" parent="." instance=ExtResource( 2 )]
+position = Vector2( -32, 544 )
+
+[node name="RoomGame3" parent="." instance=ExtResource( 3 )]
+position = Vector2( -1184, -1440 )
+
+[node name="RoomGame5" parent="." instance=ExtResource( 4 )]
+position = Vector2( -1504, -2144 )
+
+[node name="SpawnRoom3" parent="." instance=ExtResource( 5 )]
+position = Vector2( -1824, -2848 )
+
+[node name="Mana" parent="." instance=ExtResource( 6 )]
+position = Vector2( 648, 1024 )

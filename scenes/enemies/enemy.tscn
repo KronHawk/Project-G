@@ -1,0 +1,112 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://scripts/enemy.gd" type="Script" id=1]
+[ext_resource path="res://scenes/combat system/hitbox.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/Mana.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/combat system/hurtbox.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/enemies/eyemonster.png" type="Texture" id=5]
+[ext_resource path="res://assets/player/Shadonw.png" type="Texture" id=6]
+[ext_resource path="res://assets/player/Progress.png" type="Texture" id=7]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 8, 5.5 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 5 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 5 )
+region = Rect2( 32, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 5 )
+region = Rect2( 48, 0, 16, 16 )
+
+[sub_resource type="SpriteFrames" id=6]
+animations = [ {
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
+"loop": true,
+"name": "monster",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 8, 6.5 )
+
+[sub_resource type="CircleShape2D" id=8]
+radius = 83.0
+
+[sub_resource type="CircleShape2D" id=9]
+radius = 8.0
+
+[node name="enemies" type="KinematicBody2D"]
+collision_layer = 4
+collision_mask = 7
+script = ExtResource( 1 )
+mana = ExtResource( 3 )
+
+[node name="Shadown" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0.392157 )
+texture = ExtResource( 6 )
+offset = Vector2( 0, 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 6 )
+animation = "monster"
+frame = 2
+speed_scale = 2.0
+playing = true
+
+[node name="hurtbox" parent="." instance=ExtResource( 4 )]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" parent="hurtbox" index="0"]
+shape = SubResource( 7 )
+
+[node name="perception" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="perception"]
+shape = SubResource( 8 )
+
+[node name="hitbox" parent="." instance=ExtResource( 2 )]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" parent="hitbox" index="0"]
+shape = SubResource( 9 )
+
+[node name="LifeBar" type="Node2D" parent="."]
+scale = Vector2( 0.5, 0.5 )
+z_index = 2
+
+[node name="TextureProgress" type="TextureProgress" parent="LifeBar"]
+margin_left = -24.0
+margin_top = -24.0
+margin_right = 24.0
+margin_bottom = -8.0
+max_value = 10.0
+value = 10.0
+texture_progress = ExtResource( 7 )
+
+[node name="LifeTime" type="VisibilityNotifier2D" parent="."]
+
+[node name="LifeTimer" type="Timer" parent="."]
+
+[connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="area_exited" from="hurtbox" to="." method="_on_hurtbox_area_exited"]
+[connection signal="body_entered" from="perception" to="." method="_on_perception_body_entered"]
+[connection signal="body_exited" from="perception" to="." method="_on_perception_body_exited"]
+[connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="viewport_exited" from="LifeTime" to="." method="_on_LifeTime_viewport_exited"]
+
+[editable path="hurtbox"]
+[editable path="hitbox"]

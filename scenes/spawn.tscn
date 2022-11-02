@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scripts/spawn.gd" type="Script" id=1]
+
+[node name="spawn" type="Node2D"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="AreaSpawn" type="ReferenceRect" parent="."]
+margin_left = -32.0
+margin_top = -32.0
+margin_right = 32.0
+margin_bottom = 32.0
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="AreaSpawn"]
+position = Vector2( 32, 32 )
+scale = Vector2( 3.2, 3.2 )
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="Spawnpoint" type="Node2D" parent="."]
+
+[node name="DelaySpawn" type="Timer" parent="."]
+wait_time = 100000.0
+
+[connection signal="viewport_entered" from="AreaSpawn/VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_viewport_entered"]
+[connection signal="viewport_exited" from="AreaSpawn/VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_viewport_exited"]
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]
+[connection signal="timeout" from="DelaySpawn" to="." method="_on_DelaySpawn_timeout"]

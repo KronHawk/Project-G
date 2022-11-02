@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://scenes/combat system/hitbox.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/Weapons/scripts/Weapons.gd" type="Script" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 3.73069, 8.7318 )
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+
+[sub_resource type="Animation" id=3]
+resource_name = "attack"
+
+[node name="Weapons" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2( -13, -13 )
+
+[node name="Sprite" type="Sprite" parent="Node2D"]
+rotation = 5.06145
+
+[node name="hitbox" parent="Node2D/Sprite" instance=ExtResource( 2 )]
+position = Vector2( 0.142859, -2.14286 )
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape2D" parent="Node2D/Sprite/hitbox" index="0"]
+position = Vector2( -0.292314, -0.648229 )
+shape = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 2 )
+anims/attack = SubResource( 3 )
+
+[editable path="Node2D/Sprite/hitbox"]

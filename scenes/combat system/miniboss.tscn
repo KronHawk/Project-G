@@ -1,0 +1,6 @@
+[gd_scene format=2]
+
+[node name="miniboss" type="Area2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+modulate = Color( 1, 0, 0, 1 )

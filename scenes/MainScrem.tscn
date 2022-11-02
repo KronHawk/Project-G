@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://scripts/MainScrem.gd" type="Script" id=1]
+[ext_resource path="res://scenes/MainScene.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/Fonts/Minecraft.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://assets/Screem/Button.png" type="Texture" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 8
+font_data = ExtResource( 3 )
+
+[node name="Main" type="Node2D"]
+script = ExtResource( 1 )
+dungeon = ExtResource( 2 )
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2( 326, 231 )
+
+[node name="Button" type="Button" parent="Node2D"]
+margin_left = 38.0
+margin_top = 70.0
+margin_right = 544.0
+margin_bottom = 192.0
+
+[node name="Sprite" type="Sprite" parent="Node2D/Button"]
+position = Vector2( 256, 64 )
+scale = Vector2( 8, 9.625 )
+texture = ExtResource( 4 )
+
+[node name="Label" type="Label" parent="Node2D/Button/Sprite"]
+margin_left = -29.625
+margin_top = -8.1039
+margin_right = 30.375
+margin_bottom = 7.8961
+custom_fonts/font = SubResource( 1 )
+text = "Start"
+align = 1
+valign = 1
+uppercase = true
+
+[connection signal="mouse_entered" from="Node2D/Button" to="." method="_on_Button_mouse_entered"]
+[connection signal="mouse_exited" from="Node2D/Button" to="." method="_on_Button_mouse_exited"]
+[connection signal="pressed" from="Node2D/Button" to="." method="_on_Button_pressed"]

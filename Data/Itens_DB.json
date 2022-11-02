@@ -1,0 +1,47 @@
+{
+  "10001": {
+    "Name": "Iron_Sword",
+    "Damage": 1,
+    "Type": "sword",
+    "Heal": null,
+    "amount": 1,
+    "rarity": "N",
+    "description": "a older iron sword"
+  },
+  "10002": {
+    "Name": "Iron_Axe",
+    "Damage": 2,
+    "Type": "axe",
+    "Heal": null,
+    "amount": 1,
+    "rarity": "N",
+    "description": "a older iron axe"
+  },
+  "10003": {
+    "Name": "Mana",
+    "Damage": 0,
+    "Type": "consumible",
+    "Heal": 3,
+    "amount": 100,
+    "rarity": "R",
+    "description": "fabulous mana potion"
+  },
+  "10004": {
+    "Name": "Mana_Eye",
+    "Damage": 0,
+    "Type": "equipable",
+    "Heal": null,
+    "amount": 1,
+    "rarity": "SS",
+    "description": "Mana Eye, a epic item able to do huge miracles"
+  },
+  "10005": {
+    "Name": "Water_Enblem",
+    "Damage": 0,
+    "Type": "equipable",
+    "Heal": null,
+    "amount": 1,
+    "rarity": "R",
+    "description": "an ally, another form to play, play like a monter tamer"
+  }
+}
